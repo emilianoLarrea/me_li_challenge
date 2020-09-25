@@ -80,8 +80,8 @@ class MailService{
             $headers = $getHeadersFromUidResponse['data'];
             $payload = [];
             $payload['uid'] = $data['mail_uid'];
-            $payload['subject'] = imap_utf8($headers['subject']);
-            $payload['from'] = imap_utf8($headers['from']);
+            $payload['subject'] = $headers['subject'];
+            $payload['from'] = $headers['from'];
             $payload['fecha'] = new \Carbon\Carbon(strtotime($headers['date']));
             
             $mailAdapter->close();

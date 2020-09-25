@@ -15,4 +15,5 @@ use App\Http\Controllers\MailController;
 */
 Route::group(['middleware' => ['api-header']], function () {
     Route::post('mail', [MailController::class,'getMailsByWord']);
+    Route::get('mail', [MailController::class,'get']);
 });

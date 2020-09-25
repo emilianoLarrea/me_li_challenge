@@ -11,7 +11,7 @@ class MailSaverConsumer extends Command
      *
      * @var string
      */
-    protected $signature = 'consumer:server';
+    protected $signature = 'consumer:saver';
 
     /**
      * The console command description.
@@ -39,7 +39,7 @@ class MailSaverConsumer extends Command
     {
         $this->info('Initialization saver consumer.');
         $brokerUtillity = new \App\Services\Broker\BrokerService();
-        $brokerUtillity->consumeQueue('get_mails_by_word','get_mails_by_word',[$this, 'callback'], 'consumer:server');
+        $brokerUtillity->consumeQueue('get_mails_by_word','get_mails_by_word',[$this, 'callback'], 'consumer:saver');
     }
 
     public function callback(\PhpAmqpLib\Message\AMQPMessage $msg){

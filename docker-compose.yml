@@ -1,0 +1,53 @@
+version: '2'
+services:
+
+  php:
+    image: laravel
+    volumes:
+      - ./:/var/www/
+      - $HOME/.composer/:$HOME/.composer/
+    environment:
+      - "DB_HOST=mysql"
+      - "DB_DATABASE=meli"
+      - "DB_USERNAME=meli"
+      - "DB_PASSWORD=meli"
+      - "REDIS_HOST=redis"
+      - "REDIS_PORT=6379"
+      - "BROKER_URL=rabbit"
+      - "BROKER_PORT=5672"
+      - "BROKER_USER=user"
+      - "BROKER_VHOOST=user"
+      - "BROKER_PASSWORD=user"
+      - "APP_NAME=MercadoLibre-Challenge"
+      - "APP_ENV=local"
+      - "APP_KEY=base64:Wvo1J9xzJntNfO3yXfSb6gux+/pInZtBuqg3RN8Y80c="
+      - "APP_DEBUG=true"
+
+  nginx:
+    image: jguyomard/laravel-nginx:latest
+    volumes_from:
+      - php
+    ports:
+      - 8001:80
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysqldata:/var/lib/mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=secret"
+      - "MYSQL_DATABASE=meli"
+      - "MYSQL_USER=meli"
+      - "MYSQL_PASSWORD=meli"
+  redis:
+    image: redis:4.0-alpine
+    command: redis-server --appendonly yes
+  rabbit:
+    image: rabbitmq:3
+    environment:
+      - "RABBITMQ_DEFAULT_USER=user"
+      - "RABBITMQ_DEFAULT_PASS=user"
+      - "RABBITMQ_DEFAULT_VHOST=user"
+
+volumes:
+  mysqldata:
