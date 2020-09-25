@@ -125,15 +125,11 @@ class GmailAdapter implements \App\Services\Mail\Utility\Adapters\MailAdapterInt
                 }
             }
             $response = ['success'=>true, 'data'=>$headers];
-            return [
-                'content'=>$response,
-                'status' => 200
-            ];
+            return $response;
         } else {
             $this->error = join(', ', $this->last_response);
-            $this->close();
             $response = ['success'=>false, 'data'=>$this->error];
-            \App\Utilities\GeneralUtility::returnError($response,500);
+            return $response;
         }
     }
 

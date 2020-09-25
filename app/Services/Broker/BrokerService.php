@@ -10,11 +10,11 @@ class BrokerService{
 
     function __construct()
     {
-        $this->url = ''; 
-        $this->port = 5672; 
-        $this->user = ''; 
-        $this->vhost = ''; 
-        $this->password = ''; 
+        $this->url = env('BROKER_URL');
+        $this->port = env('BROKER_PORT');
+        $this->user = env('BROKER_USER');
+        $this->vhost = env('BROKER_VHOOST');
+        $this->password = env('BROKER_PASSWORD');
     }
 
     public function publishMessage($queue,$exchange,$msg){
