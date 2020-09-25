@@ -4,14 +4,14 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class MailSaverConsumer extends Command
+class MailHeadersConsumer extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'consumer:server';
+    protected $signature = 'consumer:headers';
 
     /**
      * The console command description.
@@ -37,16 +37,16 @@ class MailSaverConsumer extends Command
      */
     public function handle()
     {
-        $this->info('Initialization saver consumer.');
+        $this->info('Initialization headers consumer.');
         $brokerUtillity = new \App\Services\Broker\BrokerService();
-        $brokerUtillity->consumeQueue('get_mails_by_word','get_mails_by_word',[$this, 'callback'], 'consumer:server');
+        $brokerUtillity->consumeQueue('get_headers_mails_by_word','get_headers_mails_by_word',[$this, 'callback'], 'consumer:headers');
     }
 
     public function callback(\PhpAmqpLib\Message\AMQPMessage $msg){
         try{
             $this->info(\Carbon\Carbon::now().": initialization process");
             $msg = json_decode($msg->body, true);
-            $response = \App\Services\Mail\MailService::saveMails($msg);
+            $response = \App\Services\Mail\MailService::getHeaders($msg);
             if($response['success'] != true){
                 $this->error(\Carbon\Carbon::now().": data:".json_encode($response['data']));
             }else{
