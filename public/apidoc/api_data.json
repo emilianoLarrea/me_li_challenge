@@ -53,7 +53,7 @@
     "success": {
       "examples": [
         {
-          "title": "Respuesta sin id",
+          "title": "Respuesta",
           "content": "  HTTP/1.1 200 OK\n{\n    \"success\": true,\n    \"data\": [\n        {\n           \"id\": \"id de objeto Mail.\",\n           \"uid\": \"Identificador externo del objeto Mail.\",\n           \"fecha\": \"Fecha correspondiente al header 'date' del mail. Representa la fecha en la que se recibió el correo.\",\n           \"from\": \"Corresponde al header 'from' del mail. Representa el origen del correo.\",\n           \"subject\": \"Corresponde al header 'subject' del mail. Representa el asunto del correo.\",\n           \"updated_at\": \"Fecha de modificación del objeto Mail\",\n           \"created_at\": \"Fecha de creación del objeto Mail\",\n           \"deleted_at\": \"Fecha de eliminación del objeto Mail\"\n        },\n        ...\n    ]\n}",
           "type": "json"
         }

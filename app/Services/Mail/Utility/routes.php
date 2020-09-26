@@ -39,7 +39,7 @@
 /**
   * @apiDefine getMails
   *
-  * @apiSuccessExample {json} Respuesta sin id
+  * @apiSuccessExample {json} Respuesta
   *     HTTP/1.1 200 OK
   *   {
   *       "success": true,
