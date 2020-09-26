@@ -19,7 +19,7 @@ docker-compose up
 ```
 - En una consola nueva, sobre el mismo directorio ejecutar:
 ```sh
-dockercompose exec php composer install
+docker-compose exec php composer install
 docker-compose exec php php artisan migrate
 ```
 - En consolas independientes ejecutar, sobre el mismo directorio:
