@@ -2,7 +2,7 @@ version: '2'
 services:
 
   php:
-    image: emilianolarrea/laravel:latest
+    image: emilianolarrea/laravel:1.0
     volumes:
       - ./:/var/www/
       - $HOME/.composer/:$HOME/.composer/
